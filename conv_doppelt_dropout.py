@@ -5,6 +5,8 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
 from keras import backend as K
+from sklearn.metrics import classification_report, confusion_matrix
+import numpy as np
 #import wandb
 #from wandb.keras import WandbCallback
 import os
@@ -66,5 +68,10 @@ model.fit(x_train, y_train,
 score = model.evaluate(x_test, y_test, verbose=0)
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
+y_pred = model.predict(x_test)
+Y_pred = y_pred.argmax(axis=-1)
+Y_test = y_test.argmax(axis=-1)
+print('Confusion Matrix')
+print(confusion_matrix(Y_test, Y_pred))
 model.save('model.h5')
 #model.save(os.path.join(wandb.run.dir, "model.h5"))
