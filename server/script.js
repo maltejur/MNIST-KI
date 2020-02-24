@@ -19,7 +19,12 @@ function stop(){
 function draw(evt){
     if(down){
         var rect = canvas.getBoundingClientRect();
-        ctx.lineTo((evt.clientX - rect.left) / (rect.right - rect.left) * canvas.width,(evt.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height)
+        //ctx.lineTo((evt.clientX - rect.left) / (rect.right - rect.left) * canvas.width,(evt.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height)
+        ctx.strokeStyle = 'grey';
+        ctx.arc((evt.clientX - rect.left) / (rect.right - rect.left) * canvas.width,(evt.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height,0.4,0, 2 * Math.PI);
+        ctx.stroke();
+        ctx.strokeStyle = 'white';
+        ctx.arc((evt.clientX - rect.left) / (rect.right - rect.left) * canvas.width,(evt.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height,0.2,0, 2 * Math.PI);
         ctx.stroke();
     }
 }
